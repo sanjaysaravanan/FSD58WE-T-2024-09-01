@@ -1,0 +1,105 @@
+Topics:
+
+  1. DB Connection ---> MongoDB 
+
+    Packages:
+      MongoDB -> Simple Connecting to DB and writing on-top of the database
+
+      Problem:
+        Create two apis,
+          /users ( name, email, phone, bio, id - auto-generated )
+            GET, POST, DELETE, UPDATE
+          /posts  ( image, caption, userId, likes default - 0 )
+            GET, POST, DELETE, UPDATE
+
+      Mongoose:
+        what is mongoose? 
+          schema based object modelling tool for connecting & doing CRUD operation on DB
+
+        schema
+
+        DB Connection:
+          URI string to identify the database service
+
+    Step 1:
+      Connection to a DB
+    Step 2:
+      Write Queries to do CRUD opertion with DB
+
+    to connect to any DB We need driver setup for any language
+
+  2. Converting the Local variable to Local DB
+        local memory storing will loose the data after server restart
+
+        but local DB Data will be persisted locally in the machine
+      
+    Local NodeJs Server <--> Local DB 
+
+  3. Cloud DB:
+    1. Cloud Atlas:
+
+      Signing Up & Creating Cloud DB
+
+      Connecting with Cloud Atlas DB
+    
+      DB Create: 
+        1. Sign up on https://cloud.mongodb.com/
+        2. Project & Cluster Creation
+        3. Database Creation ( Select M0 Free Version & Create )
+        4. Username with Password Create User, Note those details somewhere safe
+          sanjaysaravanan1997, sopupn14jDK7EmQt
+        5. Add 0.0.0.0/0 in the network - this open up the db for anybody with username/password to connect to it
+        5. Go to Database
+        7. Click Connect, & Click on NodeJS & Copy the URL Displayed
+            mongodb+srv://sanjaysaravanan1997:sopupn14jDK7EmQt@cluster0.nwegh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      
+      Local NodeJS Server <--> Cloud DB - Done
+  
+  4. Deployment without Security:
+
+    Cloud Backend ( NodeJs in Render.com ) <-> Cloud DB ( Mongo Cluster ) - Done
+
+
+Task:
+  Day 35: https://docs.google.com/document/d/1sxHk2QDyK_evjlbwWPklyTXDHHOENKqj-IHS2yNSaHQ/edit
+
+  Create two Object:
+    mentor:
+      name
+      email
+      mentorId
+      // students array contains student ids
+      students: []
+
+    /assign-student/<mentor-id>
+      Body:
+        {
+          studentIds: ['Goklul-1', "Manikandan-12"]
+        }
+      
+      Throw error if any of the student had a mentor already
+
+    /change-mentor/<studentId>
+      Body: {
+        mentorId: 'Sanjay-1234'
+      }
+
+    mentor-assignment:
+      studentId
+      mentorId
+      assignmentId
+
+    student: By Default mentor for a student will be empty
+      name
+      email
+      studentId
+      currentMentor: 'Sanjay S'
+      prevMentor: 'Sanjay Prashanth' ( once You assign a mentor to a student change the current & prev mentor accordingly )
+
+      Try using Cloud DB by signin up as discussed in the class
+
+
+Next Session:
+  5. Storing secrets using .env like dburl & passwords
+
+      Package: dotenv ( for loading the variables from .env into process.env )
